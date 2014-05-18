@@ -32,7 +32,8 @@ public class Main {
         AdbBackend adbBack = new AdbBackend();
         IChimpDevice mChimpDevice = adbBack.waitForConnection();
         long time = System.currentTimeMillis();
-        while (System.currentTimeMillis() - time < 2260) {
+//        while (System.currentTimeMillis() - time < 2260) {
+        while(true){
             mChimpDevice.touch(180, 1000, TouchPressType.DOWN_AND_UP);
             mChimpDevice.touch(540, 1000, TouchPressType.DOWN_AND_UP);
         }
