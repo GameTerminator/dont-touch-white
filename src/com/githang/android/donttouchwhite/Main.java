@@ -29,13 +29,18 @@ import com.android.chimpchat.core.TouchPressType;
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        Config config = new Config(720, 1080);// 我的手机分辨率是720 * 1080的。
+        final int x1 = config.getTouchX1();
+        final int x2 = config.getTouchX2();
+        final int y = config.getConverseY();
+        
         AdbBackend adbBack = new AdbBackend();
         IChimpDevice mChimpDevice = adbBack.waitForConnection();
+        
         long time = System.currentTimeMillis();
-//        while (System.currentTimeMillis() - time < 2260) {
-        while(true){
-            mChimpDevice.touch(180, 1000, TouchPressType.DOWN_AND_UP);
-            mChimpDevice.touch(540, 1000, TouchPressType.DOWN_AND_UP);
+        while (System.currentTimeMillis() - time < Mode.MAX) {
+            mChimpDevice.touch(x1, y, TouchPressType.DOWN_AND_UP);
+            mChimpDevice.touch(x2, y, TouchPressType.DOWN_AND_UP);
         }
     }
 
